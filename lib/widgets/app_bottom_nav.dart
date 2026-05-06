@@ -3,25 +3,27 @@ import 'package:flutter/material.dart';
 class AppBottomNav extends StatelessWidget {
   final int currentIndex;
 
-  const AppBottomNav({super.key, required this.currentIndex});
+  const AppBottomNav({
+    super.key,
+    required this.currentIndex,
+  });
 
   static const Color bg = Color(0xFFFFF8F7);
   static const Color red = Color(0xFFC4003B);
   static const Color softRed = Color(0xFFFFE7EA);
   static const Color navGrey = Color(0xFF9B8C8F);
 
+  static const List<String> routes = [
+    '/accueil',
+    '/history',
+    '/new',
+    '/pending',
+  ];
+
   void goToPage(BuildContext context, int index) {
     if (index == currentIndex) return;
 
-    if (index == 0) {
-      Navigator.of(context).pushReplacementNamed('/accueil');
-    } else if (index == 1) {
-      Navigator.of(context).pushReplacementNamed('/history');
-    } else if (index == 2) {
-      Navigator.of(context).pushReplacementNamed('/new');
-    } else if (index == 3) {
-      Navigator.of(context).pushReplacementNamed('/pending');
-    }
+    Navigator.of(context).pushReplacementNamed(routes[index]);
   }
 
   @override
@@ -30,7 +32,12 @@ class AppBottomNav extends StatelessWidget {
       height: 57,
       decoration: const BoxDecoration(
         color: bg,
-        border: Border(top: BorderSide(color: Color(0xFFF0E8E8), width: 1)),
+        border: Border(
+          top: BorderSide(
+            color: Color(0xFFF0E8E8),
+            width: 1,
+          ),
+        ),
       ),
       child: SafeArea(
         top: false,
@@ -56,13 +63,13 @@ class AppBottomNav extends StatelessWidget {
                   icon: Icons.add_circle_outline_rounded,
                   label: 'NEW',
                   active: currentIndex == 2,
-                  onTap: () {},
+                  onTap: () => goToPage(context, 2),
                 ),
                 AppNavItem(
                   icon: Icons.pending_actions_outlined,
                   label: 'PENDING',
                   active: currentIndex == 3,
-                  onTap: () {},
+                  onTap: () => goToPage(context, 3),
                 ),
               ],
             ),
@@ -106,7 +113,11 @@ class AppNavItem extends StatelessWidget {
                 color: active ? AppBottomNav.softRed : Colors.transparent,
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: Icon(icon, size: active ? 17 : 16, color: color),
+              child: Icon(
+                icon,
+                size: active ? 17 : 16,
+                color: color,
+              ),
             ),
             const SizedBox(height: 2),
             Text(

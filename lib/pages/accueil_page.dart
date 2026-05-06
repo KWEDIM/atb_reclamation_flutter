@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:atb_reclamation_flutter/widgets/app_bottom_nav.dart';
-
+import '../widgets/app_bottom_nav.dart';
 class AccueilPage extends StatelessWidget {
   const AccueilPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: UnifiedDashboardPage(),
-    );
+    return const UnifiedDashboardPage();
   }
 }
 
@@ -430,7 +426,11 @@ class ActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushReplacementNamed('/new');
+      },
+      child: Container(
       height: 141,
       width: double.infinity,
       clipBehavior: Clip.hardEdge,
@@ -525,6 +525,7 @@ class ActionCard extends StatelessWidget {
           ),
         ],
       ),
+     ), 
     );
   }
 }

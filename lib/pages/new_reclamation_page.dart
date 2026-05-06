@@ -168,9 +168,7 @@ class SubmissionGuideCard extends StatelessWidget {
               letterSpacing: -0.1,
             ),
           ),
-
           SizedBox(height: 8),
-
           Text(
             'Provide precise details for expedited\nprocessing. High-priority claims are\nreviewed within 4 business hours.',
             style: TextStyle(
@@ -180,13 +178,9 @@ class SubmissionGuideCard extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-
           SizedBox(height: 23),
-
           ClassificationRow(),
-
           SizedBox(height: 19),
-
           GuideImagePlaceholder(),
         ],
       ),
@@ -347,41 +341,31 @@ class ReclamationFormCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FormLabel('CATEGORY'),
-
           SizedBox(height: 13),
-
           SelectCategoryBox(),
 
           SizedBox(height: 25),
 
           FormLabel('PRIORITY LEVEL'),
-
           SizedBox(height: 13),
-
           PrioritySelector(),
 
           SizedBox(height: 25),
 
           FormLabel('SUBJECT'),
-
           SizedBox(height: 11),
-
           SubjectInputBox(),
 
           SizedBox(height: 25),
 
           FormLabel('DESCRIPTION'),
-
           SizedBox(height: 11),
-
           DescriptionInputBox(),
 
           SizedBox(height: 28),
 
           FormLabel('EVIDENCE & DOCUMENTATION'),
-
           SizedBox(height: 15),
-
           UploadEvidenceBox(),
 
           SizedBox(height: 29),
@@ -457,12 +441,6 @@ class SelectCategoryBox extends StatelessWidget {
             size: 17,
             color: NewReclamationPage.textSoft,
           ),
-          SizedBox(width: 13),
-          Icon(
-            Icons.keyboard_arrow_down_rounded,
-            size: 17,
-            color: NewReclamationPage.textSoft,
-          ),
         ],
       ),
     );
@@ -476,20 +454,11 @@ class PrioritySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Row(
       children: [
-        PriorityButton(
-          label: 'LOW',
-          active: false,
-        ),
+        PriorityButton(label: 'LOW', active: false),
         SizedBox(width: 8),
-        PriorityButton(
-          label: 'MEDIUM',
-          active: false,
-        ),
+        PriorityButton(label: 'MEDIUM', active: false),
         SizedBox(width: 8),
-        PriorityButton(
-          label: 'HIGH',
-          active: true,
-        ),
+        PriorityButton(label: 'HIGH', active: true),
       ],
     );
   }
@@ -522,9 +491,7 @@ class PriorityButton extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-          color: active
-              ? NewReclamationPage.red
-              : NewReclamationPage.textSoft,
+          color: active ? NewReclamationPage.red : NewReclamationPage.textSoft,
           fontSize: 7.5,
           fontWeight: FontWeight.w900,
           letterSpacing: 0.2,
@@ -612,11 +579,10 @@ class UploadEvidenceBox extends StatelessWidget {
         border: Border.all(
           color: NewReclamationPage.borderPink,
           width: 1.2,
-          style: BorderStyle.solid,
         ),
       ),
       child: CustomPaint(
-        painter: DashedBorderPainter(
+        painter: const DashedBorderPainter(
           color: NewReclamationPage.borderPink,
           radius: 5,
         ),
@@ -636,9 +602,7 @@ class UploadEvidenceBox extends StatelessWidget {
                 size: 25,
               ),
             ),
-
             const SizedBox(height: 20),
-
             const Text(
               'Drop files here or',
               style: TextStyle(
@@ -647,9 +611,7 @@ class UploadEvidenceBox extends StatelessWidget {
                 fontWeight: FontWeight.w900,
               ),
             ),
-
             const SizedBox(height: 2),
-
             const Text(
               'browse',
               style: TextStyle(
@@ -658,9 +620,7 @@ class UploadEvidenceBox extends StatelessWidget {
                 fontWeight: FontWeight.w900,
               ),
             ),
-
             const SizedBox(height: 9),
-
             const Text(
               'PDF, JPG, PNG UP TO 10MB',
               style: TextStyle(
@@ -726,9 +686,9 @@ class PolicyInfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: const [
+      children: [
         Icon(
           Icons.info_outline_rounded,
           color: NewReclamationPage.red,
@@ -756,27 +716,32 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 51,
-      width: double.infinity,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: NewReclamationPage.red,
-        borderRadius: BorderRadius.circular(7),
-        boxShadow: [
-          BoxShadow(
-            color: NewReclamationPage.red.withOpacity(0.16),
-            blurRadius: 18,
-            offset: const Offset(0, 8),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushReplacementNamed('/open-reclamation');
+      },
+      child: Container(
+        height: 51,
+        width: double.infinity,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: NewReclamationPage.red,
+          borderRadius: BorderRadius.circular(7),
+          boxShadow: [
+            BoxShadow(
+              color: NewReclamationPage.red.withOpacity(0.16),
+              blurRadius: 18,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: const Text(
+          'Submit Reclamation',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w900,
           ),
-        ],
-      ),
-      child: const Text(
-        'Submit Reclamation',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-          fontWeight: FontWeight.w900,
         ),
       ),
     );

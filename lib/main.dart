@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'pages/login_page.dart';
 import 'pages/accueil_page.dart';
 import 'pages/history_page.dart';
@@ -12,17 +13,28 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  static const String loginRoute = '/login';
+  static const String accueilRoute = '/accueil';
+  static const String historyRoute = '/history';
+  static const String newRoute = '/new';
+  static const String pendingRoute = '/pending';
+  static const String openReclamationRoute = '/open-reclamation';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'ATB Reclamation',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: loginRoute,
       routes: {
-        '/login': (context) => const LoginPage(),
-        '/accueil': (context) => const AccueilPage(),
-        '/history': (context) => const HistoryPage(),
-        '/new': (context) => const NewReclamationPage(),
-        '/open-reclamation': (context) => const OpenReclamationPage(),
+        loginRoute: (context) => const LoginPage(),
+        accueilRoute: (context) => const AccueilPage(),
+        historyRoute: (context) => const HistoryPage(),
+        newRoute: (context) => const NewReclamationPage(),
+
+        // Les deux routes pointent vers la même page pour éviter les erreurs.
+        pendingRoute: (context) => const OpenReclamationPage(),
+        openReclamationRoute: (context) => const OpenReclamationPage(),
       },
     );
   }
